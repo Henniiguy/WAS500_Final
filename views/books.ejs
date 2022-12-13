@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="/css/style.css">
+  <title>Collection of Books</title>
+</head>
+
+<body>
+  <div>
+    <ul>
+      <li><a class="text-light" href="/"> Home Page</li>
+      <li><a class="text-light" href="/booksList"> Books </a></li>
+      <li><a class="text-light" href="/admin"> admin </a></li>
+      <li><a class="text-light" href="/admin/addnewbook"> Add Book </a></li>
+
+    </ul>
+
+  </div>
+  <div id="container">
+
+    <div class="grid">
+      <% books.forEach(function(book) { %>
+        <div class="card">
+          <div style="float: left;">
+            <a href="book/<%= book._id %>">
+              <img src="<%=book.image%>" alt="<%= book.name %>" width="80%" height="70%">
+            </a>
+          </div>
+          <br>
+          <div>
+            <a href="book/<%= book._id %>">
+              <%=book.name %> By <%= book.author %>
+            </a>
+          </div>
+        </div>
+        <% }); %>
+    </div>
+
+  </div>
+</body>
+
+</html>

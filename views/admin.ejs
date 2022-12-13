@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Admin</title>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <ul>
+                <li><a class="text-light" href="/"> Home Page</li>
+                <li><a class="text-light" href="/booksList"> Books </a></li>
+                <li><a class="text-light" href="/admin"> admin </a></li>
+                <li><a class="text-light" href="/admin/addnewbook"> Add Book </a></li>
+
+            </ul>
+
+        </div>
+
+        <div class="container">
+            <table id="books">
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>author</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                <% books.forEach(function(book) { %>
+                    <tr>
+                        <td>
+                            <%= book._id %>
+                        </td>
+                        <td>
+                            <%= book.name %>
+                        </td>
+                        <td>
+                            <%= book.author %>
+                        </td>
+                        <td>
+                            <a href="admin/editView/<%= book._id %>">
+                                Edit
+                            </a>
+
+                        </td>
+                        <td>
+                            <a onclick="comfirm('<%= book._id %>')">
+                                X
+                            </a>
+
+                        </td>
+                        </td>
+                    </tr>
+                    <% }); %>
+
+            </table>
+        </div>
+
+    </div>
+</body>
+<script>
+    const comfirm = (value) => {
+        if (window.confirm("Delete The Book?")) {
+            fetch(`admin/delete/${value}`)
+                .then(res => {
+                    location.reload();
+                })
+                .catch()
+
+        }
+    }
+</script>
+
+</html>

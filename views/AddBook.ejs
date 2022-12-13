@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Admin</title>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <ul>
+                <li><a class="text-light" href="/"> Home Page</li>
+                <li><a class="text-light" href="/booksList"> Books </a></li>
+                <li><a class="text-light" href="/admin"> admin </a></li>
+                <li><a class="text-light" href="/admin/addView"> Add Book </a></li>
+            </ul>
+
+        </div>
+        <div class="container flex">
+            <form id="newBook" action="/admin/add" method="post">
+                <div class="form-group">
+                    <label>Book Name</label>
+                    <input id="name" name="name" class="form-controler" type="text">
+                    <label id="nameerror" class="error"></label>
+
+
+                </div>
+                <div class="form-group">
+                    <label>Book author</label>
+                    <input id="author" name="author" class="form-controler" type="text">
+                    <label id="authorerror" class="error"></label>
+
+                </div>
+                <div class="form-group">
+                    <label>Book desc</label>
+                    <input id="desc" name="desc" class="form-controler" type="text">
+                    <label id="descerror" class="error"></label>
+
+                </div>
+                <div class="form-group">
+                    <label>Book image</label>
+                    <input id="image" name="image" class="form-controler" name type="text">
+                    <label id="imageerror" class="error"></label>
+                </div>
+                <input class="btn" onclick="handleError()" type="button" value="Save">
+            </form>
+
+        </div>
+    </div>
+</body>
+<script>
+    let name = document.getElementById("name")
+    let author = document.getElementById("author")
+    let image = document.getElementById("image")
+    let desc = document.getElementById("desc")
+
+    let nameerror = document.getElementById("nameerror")
+    let authorerror = document.getElementById("authorerror")
+    let imageerror = document.getElementById("imageerror")
+    let descerror = document.getElementById("descerror")
+
+    const handleError = () => {
+
+        if (name.value.length == 0) {
+            nameerror.innerText = "Invalid Name"
+
+        }
+        if (image.value.length == 0) {
+            imageerror.innerText = "Invalid Image"
+        }
+        if (author.value.length == 0) {
+            authorerror.innerText = "Invalid Author"
+
+        }
+        if (desc.value.length == 0) {
+            descerror.innerText = "Invalid desc"
+
+        }
+        if (
+            desc.value.length > 0 &&
+            author.value.length > 0 &&
+            image.value.length > 0 &&
+            name.value.length > 0
+
+        ) {
+            descerror.innerText = ""
+            authorerror.innerText = ""
+            imageerror.innerText = ""
+            nameerror.innerText = ""
+            document.getElementById("newBook").submit();
+        }
+    }
+</script>
+
+</html>
